@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app" class="main_body">
+        <div class="main_body_block">
+            <img src="sakura.jpg" alt="цветение сакуры">
+            <h1>Task Planner</h1>
+            <input class="main_input" type="text" @keyup.enter="addTask" v-model="currentTask">
+            <ul>
+                <li id="task_instance" v-for="task in tasks">
+                    <input type="text" v-if="task.isEditing" @keyup.enter="editTask(task.text)" v-model="editValue">
+                    <span v-else @click="task.isCompleted=!task.isCompleted"
+                        :class="{'strike':task.isCompleted}">{{task.text}}</span>
+                    <button class="button_one" @click="removeTask(task.text)">delete</button>
+                    <button class="button_one" @click="changeEditing(task.text)">edit</button>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
